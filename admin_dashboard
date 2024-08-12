@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Users</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Campaigns</h2>
+    <ul>
+        {% for campaign in campaigns %}
+            <li>{{ campaign.title }} - ${{ campaign.amount_raised }} raised of ${{ campaign.goal_amount }}</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{{ url_for('index') }}">Back to home</a>
+</body>
+</html>
