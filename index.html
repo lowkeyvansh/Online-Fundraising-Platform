@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundraising Platform</title>
+</head>
+<body>
+    <h1>Online Fundraising Platform</h1>
+    {% if current_user.is_authenticated %}
+        <p>Hello, {{ current_user.username }}! <a href="{{ url_for('logout') }}">Logout</a></p>
+        <a href="{{ url_for('new_campaign') }}">Create New Campaign</a>
+        <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+    
+    <h2>Campaigns</h2>
+    <ul>
+        {% for campaign in campaigns %}
+            <li><a href="{{ url_for('campaign_detail', campaign_id=campaign.id) }}">{{ campaign.title }}</a> - ${{ campaign.amount_raised }} raised of ${{ campaign.goal_amount }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
