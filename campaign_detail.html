@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ campaign.title }}</title>
+</head>
+<body>
+    <h1>{{ campaign.title }}</h1>
+    <p>{{ campaign.description }}</p>
+    <p>${{ campaign.amount_raised }} raised of ${{ campaign.goal_amount }} goal</p>
+    
+    {% if current_user.is_authenticated %}
+        <form method="POST">
+            <label for="amount">Donate:</label>
+            <input type="number" name="amount" required><br>
+            <button type="submit">Donate</button>
+        </form>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Login to donate</a></p>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}">Back to home</a>
+</body>
+</html>
